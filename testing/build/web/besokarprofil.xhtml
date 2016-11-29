@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.
+org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+ xmlns:p="http://primefaces.org/ui">
+ 
+ 	<h:head>
+ 		<h:outputStylesheet library="css" name="test.css"  />
+ 	</h:head>
+ 
+	<h:body>
+		<h:panelGroup layout="block" id="topContainer">
+			<h:panelGroup layout="block" id="topLeft">
+				<h:form>
+				<h:outputText id="inloggadAnv" value="Inloggad användare: "/>
+				<h:commandLink styleClass="hemLank" action="#{bean.redirect()}" value="#{bean.sender.name}" >
+	     		</h:commandLink>  
+				</h:form>
+				<h:form>
+					<h:commandButton id="logOut" action="#{bean.logOut()}" value="Logga ut" />
+					<h:commandButton id="privateMessage" action="inbox" value="Privata meddalanden" />
+				</h:form>
+			</h:panelGroup>
+		
+			<h:panelGroup layout="block" id="topRight">
+				<h:form id="formSearch">
+					<h:inputText id="in" value="#{bean.searchname}"/>
+                                        <h:commandButton id="knapp" value="Sok" action="#{bean.searchUser()}">
+	  				</h:commandButton>
+				</h:form>
+			</h:panelGroup>
+	  	</h:panelGroup>
+	
+		<h:panelGroup layout="block" id="container">
+			<h:panelGroup layout="block" id="midLeft">
+                        
+				<h:outputText value="Besokande profil: "/>
+				<br/>
+			
+				<h:outputText value="Namn: "/>
+				<h:outputText value="#{bean.receiver.name}"/>
+				<br/>
+			
+				<h:outputText value="Id: "/>
+				<h:outputText value="#{bean.receiver.id}"/>
+				<br/>
+                                <br/>
+                                <h:form>
+                                    <h:outputText value="Skriv ett PM till "/>
+                                    <h:outputText value="#{bean.receiver.name}:"/>
+                                    <h:inputTextarea id="inputaName" value="#{privatebean.message}"/>
+                                    <br/>
+                                    <h:commandButton id="knappHej" value="Skicka" action="#{privatebean.add()}"/>
+                                </h:form>
+                          
+			</h:panelGroup>
+
+			
+			<h:panelGroup layout="block" id="midRight">
+                                 <h:form >
+                                 #{msgbean.list()}
+                                <h:dataTable  value="#{bean.users}" var="row">
+                                    <h:column >
+
+                                            <h:commandLink id="commandlink4anv" action="#{bean.skicka(row)}" value="#{row.name}" >
+
+                                            </h:commandLink>
+
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form> 
+                     
+                           
+			</h:panelGroup>
+			
+			<h:panelGroup layout="block" id="midCenter">
+                            <h:form>
+                                    <h:outputText id="PublicMessage"  value="Skriv wall meddelande:"/>
+                                    <br/>
+                                    <h:inputTextarea id="msgIn" styleClass="wallInput" value="#{msgbean.message}"/>
+                                    <br/>
+                                    <h:commandButton id="knappAddMsg" value="Post" action="#{msgbean.add()}"> 
+                                        <f:ajax execute='msgIn' render='@all'/>
+                                    </h:commandButton>
+                                    
+                                    
+                            </h:form>
+                        
+                           
+                                <h:panelGroup layout="block" id="postWall">
+                                     <h:form id="formwall">
+                                       
+                                         <h:dataTable id="outMsg" value="#{msgbean.publicmessages}" var="rad"> 
+                                                <h:column>
+
+                                                        #{rad.name} skrev: 
+                                                        <br/>
+                                                        #{rad.message}
+                                                </h:column>
+                                             </h:dataTable>
+                                   </h:form>
+                                </h:panelGroup>	
+                             
+			
+		</h:panelGroup>
+			
+		</h:panelGroup>
+		
+	</h:body>
+
+</html>		

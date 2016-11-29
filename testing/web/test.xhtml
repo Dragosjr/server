@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.
+org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+ 		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+	>
+ 		<h:head>
+ 			<title>Search with ajax</title>
+ 		</h:head>
+ 
+		 
+		 <h:body>
+			<h:form>
+				User name:
+                                <h:inputText id="in" value="#{msgbean.message}">
+				</h:inputText>
+		 		<br/>
+				<br>
+                                    <h:commandButton id="knapp" value="Search" action="#{msgbean.add()}">
+		  			<f:ajax execute="in" render="har"/>
+		  		</h:commandButton>
+		  		<br/>
+		  		
+                                <h:panelGroup id="har">
+                                    <h:dataTable id="outputMsg" value="#{msgbean.publicmessages}" var="row">
+                                    <h:column>
+                                            <f:facet name="header"><h:outputText value="NAME"/></f:facet>
+                                                    <h:link outcome="row" value="#{row.name}" >
+                                                        <f:param name="name" value="#{bean.sender.name}" />
+                                                </h:link>  
+                                            </h:column>
+                                    </h:dataTable>
+                                </h:panelGroup>
+	
+		  			
+		  		
+		  		
+		  		
+		  		</br>
+			</h:form>	
+		</h:body>
+</html>

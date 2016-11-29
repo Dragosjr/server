@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.
+    org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <h:head>
+        <h:outputStylesheet library="css" name="test.css"  />
+    </h:head>
+
+    <h:body>
+
+        <h:panelGroup layout="block" id="topContainer">
+            <h:panelGroup layout="block" id="topLeft">
+                <h:form>
+                    <h:inputText id="in" p:placeholder="Namn" styleClass="text-input" value="#{bean.sender.name}"/>
+                    <br/>
+                    <h:inputSecret id="passwordInput" p:placeholder="Lösenord" styleClass="text-input" value="#{bean.sender.password}"/>
+
+                    <h:form>
+                        <h:commandButton value="login" action="#{bean.verUser()}"/>
+                        <h:commandButton action="registering" value="Registrering" />
+                        <h:commandButton action="test" value="test" />
+                    </h:form>
+                </h:form>
+            </h:panelGroup>
+
+
+            <h:panelGroup layout="block" id="topRight">
+
+            </h:panelGroup>
+        </h:panelGroup>
+
+
+        <h:panelGroup layout="block" id="container">
+
+            <h:panelGroup layout="block" id="midLeft">
+                <h:form>
+                    <h:outputLabel id="out" value="#{bean.statusVer}"/><br/>
+                </h:form>
+            </h:panelGroup>
+
+
+            <h:panelGroup layout="block" id="midRight">
+            </h:panelGroup>
+        </h:panelGroup>
+
+
+
+        <br />
+      
+    </h:body>
+
+</html>		

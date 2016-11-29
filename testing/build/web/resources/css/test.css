@@ -1,0 +1,105 @@
+
+body{
+	background-color:white;
+	border: 3px solid #000000;
+	width:1000px;
+	height:500px;
+	margin: 0 auto;
+}
+
+
+
+#formMain{
+	padding-top:20px;
+	background-color:white;
+	height:500;
+}
+
+#button{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+
+#topContainer{
+	background-color:#808080;
+	border-bottom: 2px solid #000000;
+	height:50px;
+	width:100%;
+    
+   
+}
+
+#topLeft{
+	float:left;
+    width:300px;
+    padding-left:5px;
+    padding-top:5px;
+
+}
+
+#topRight{
+	float:right;
+	padding-right:5px;
+	padding-top:5px;
+}
+
+#container{
+	width:100%;
+	height:450px;
+	background-color:#c0c0c0;
+    
+}
+
+#midRight{
+	background-color:#c0c0c0;
+  	float:right;
+    padding-right:10px;
+    width:100px;
+    
+}
+
+#midLeft{
+
+	background-color:#c0c0c0;
+    float:left;
+    width:25%;
+    height:auto;
+    padding-left:5px;
+    padding-top:5px;
+}
+
+#midCenter{
+	height:98%;
+	background-color:#ffffff;
+   	width:400px;
+   	margin:0px auto;
+   	border-left: 2px solid #000000;
+   	border-right: 2px solid #000000;
+   	padding-left:5px;
+   	padding-top:5px;
+ 
+}
+
+.hemLank2{
+	color:#000000;
+	border-bottom:none;
+	font-family:Arial;
+	font-weight:bold;
+}
+
+.text-input{
+  	width:120px;
+  	padding-bottom:2px;
+}
+
+.wallInput{
+	width:390px;
+}
+
+#postWall{
+	height:200px;
+	overflow-y:scroll;
+}
+

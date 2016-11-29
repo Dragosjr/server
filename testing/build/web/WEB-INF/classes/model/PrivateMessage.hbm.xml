@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-dec-23 16:07:15 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="model.PrivateMessage" table="T_PRIVATEMESSAGE">
+        <id name="id" type="int" access="field" column="id">
+            <generator class="native" />
+        </id>
+        <property name="sender" type="int" column="sender"/>
+        <property name="receiver" type="int" column="receiver"/>
+        <property name="message" type="java.lang.String" access="field" column="message"/>
+
+    </class>
+</hibernate-mapping>
+

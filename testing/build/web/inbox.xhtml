@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.
+org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+ 
+ <h:head>
+  <h:outputStylesheet library="css" name="test.css"  />
+ </h:head>
+ 
+<h:body>
+	
+	<h:panelGroup layout="block" id="topContainer">
+		<h:panelGroup layout="block" id="topLeft">
+			<h:form>
+				<h:outputText id="inloggadAnv" value="Inloggad användare: "/>
+				<h:commandLink styleClass="hemLank" action="besokarprofil"  value="#{bean.sender.name}" >
+				</h:commandLink>  
+			</h:form>
+			<h:form>
+				<h:commandButton id="logOut" action="login" value="Logga ut" />
+				<h:commandButton id="privateMessage" action="readPrivate" value="Privata meddalanden" />
+			</h:form>
+		</h:panelGroup>
+		
+		
+		<h:panelGroup layout="block" id="topRight">
+			<h:form>
+				<h:inputText id="userLogin" value="#{bean.searchname}"/>
+				<h:commandButton id="search" value="Sok" action="#{bean.searchUser()}">
+					
+  				</h:commandButton>
+			</h:form>	
+		</h:panelGroup>
+  	</h:panelGroup>
+
+	
+	<h:panelGroup layout="block" id="container">
+	
+		<h:panelGroup layout="block" id="midLeft">
+			
+			
+		</h:panelGroup>
+		
+		<h:panelGroup layout="block" id="midRight">
+			<h:form id="hej">
+			     #{privatebean.list()}
+                                <h:dataTable  value="#{bean.users}" var="row">
+                                    <h:column >
+
+                                            <h:commandLink id="commandlink4anv" action="#{bean.skicka(row)}" value="#{row.name}" >
+
+                                            </h:commandLink>
+
+                                    </h:column>
+                                </h:dataTable>
+			</h:form>
+		</h:panelGroup>
+	
+		<h:panelGroup layout="block" id="midCenter">
+			
+				
+			<h:panelGroup layout="block" id="postWall">
+				<h:form>
+                                    <h:dataTable id="outMsg" value="#{privatebean.privatemessages}" var="rad"> 
+        	  			<h:column>
+        	  				
+        					#{rad.name} skrev: 
+        					<br/>
+        					#{rad.message}
+         	 			</h:column>
+                                    </h:dataTable>
+				</h:form>
+			</h:panelGroup>	
+			
+			
+		</h:panelGroup>
+	
+	</h:panelGroup>
+	
+
+</h:body>
+
+</html>	
