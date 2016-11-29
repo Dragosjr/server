@@ -34,6 +34,7 @@ public class MemberBean {
     private UserDAO userdb;
     private List<Member> users;
     private HtmlDataTable skickas;
+    private String dennis;
 
 
     public MemberBean(){
