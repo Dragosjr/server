@@ -25,7 +25,7 @@ public class PrivateMessageBean {
     private int sender;
     private int receiver;
     private String message;
-    
+    private String statusVer;
     private PrivateMessageDAO db;
     private PrivateMessage pm;
     private List<PrivateMessage> privatemessages;
@@ -68,6 +68,14 @@ public class PrivateMessageBean {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    
+    public String getStatusVer(){
+        return statusVer;
+    }
+    
+    public void setStatusVer(String statusVer){
+        this.statusVer = statusVer;
     }
 
     public PrivateMessageDAO getDb() {
@@ -112,6 +120,7 @@ public class PrivateMessageBean {
         
         db.add(pm);
         message="";
+        setStatusVer("PM skickat!");
     }
     
     public void list(){
