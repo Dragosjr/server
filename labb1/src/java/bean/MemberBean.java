@@ -135,6 +135,7 @@ public class MemberBean {
     }
     
     public void verUser() throws Exception{
+        Member temp;
        if(!sender.getPassword().isEmpty() && sender.getName().isEmpty()){
            setStatusVer("Fyll i namn");
        }
@@ -145,9 +146,10 @@ public class MemberBean {
            setStatusVer("Fyll i namn och lösenord");
        }
        else if(!sender.getName().isEmpty() && !sender.getPassword().isEmpty()){
-            sender= userdb.verUser(sender, 0);
-            if(sender!=null){
+            temp= userdb.verUser(sender, 0);
+            if(temp!=null){
                 FacesContext.getCurrentInstance().getExternalContext().redirect("anvandare.xhtml");
+                this.sender=temp;
                 this.receiver=this.sender;
             }
             else{
