@@ -1,4 +1,3 @@
-
 package bean;
 
 
@@ -9,15 +8,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
-import javax.swing.text.Document;
 import model.Member;
 import org.hibernate.Session;
-import util.HibernateUtil;
 
 
 
@@ -29,6 +24,7 @@ public class MemberBean {
     private Member sender;
     private Member receiver;
     private String statusVer;
+    private String statusAdd;
     private String searchname;
     private Session session;
     private UserDAO userdb;
@@ -48,6 +44,14 @@ public class MemberBean {
     public void init(){
 	
     }
+
+    public String getStatusAdd() {
+        return statusAdd;
+    }
+
+    public void setStatusAdd(String statusAdd) {
+        this.statusAdd = statusAdd;
+    }    
     
     public Member getUser() {
         return user;
@@ -107,10 +111,17 @@ public class MemberBean {
         this.receiver = receiver;
     }
 
- 
-    
     public void addUser() throws Exception{
-        userdb.addUser(this.user);
+        if(!user.getPassword().isEmpty() && user.getName().isEmpty()){
+            setStatusAdd("Fyll i namn");
+        }else if(!user.getName().isEmpty() && user.getPassword().isEmpty()){
+            setStatusAdd("Fyll i losenord");
+        }else if(user.getName().isEmpty() && user.getPassword().isEmpty()){
+            setStatusAdd("Fyll i namn och losenord");
+        }else{
+             userdb.addUser(this.user);
+             setStatusAdd("Anvandare registrerad");
+        }
     }
     
     public void searchUser(){
