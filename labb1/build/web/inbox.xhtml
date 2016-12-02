@@ -15,12 +15,12 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<h:panelGroup layout="block" id="topLeft">
 			<h:form>
 				<h:outputText id="inloggadAnv" value="Inloggad användare: "/>
-				<h:commandLink styleClass="hemLank" action="besokarprofil"  value="#{bean.sender.name}" >
+                                <h:commandLink styleClass="hemLank" action="#{bean.redirectToProfile()}"  value="#{bean.sender.name}" >
 				</h:commandLink>  
 			</h:form>
 			<h:form>
 				<h:commandButton id="logOut" action="login" value="Logga ut" />
-				<h:commandButton id="privateMessage" action="readPrivate" value="Privata meddalanden" />
+				<h:commandButton id="privateMessage" action="#{bean.redirectToInbox()}" value="Privata meddalanden" />
 			</h:form>
 		</h:panelGroup>
 		

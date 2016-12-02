@@ -23,18 +23,33 @@ public class UserDAO {
     private Transaction tx;
     private Criteria cr;
     
-    public void addUser(Member user){
+    public boolean addUser(Member user){
+        boolean nameExist=true;
         try{
             session= HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
            
+           
+            cr=session.createCriteria(Member.class);
+            List<Member> users= cr.list();
+            
+            for (int index=0; index<users.size(); index++) {
+                if(user.getName().equals(users.get(index).getName())){
+                    nameExist=false;
+                }
+            }
+            
+            if(nameExist==true){
+                session.save(user);
+                session.getTransaction().commit();
+            }
+            
         }catch(Exception ex){
             System.out.println("add user fail: "+ ex);
         }finally{
             session.close();
         }
+      return nameExist;
     }
     
     public Member verUser(Member sender, int id){

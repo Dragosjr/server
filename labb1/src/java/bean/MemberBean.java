@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 import model.Member;
 import org.hibernate.Session;
 
@@ -119,8 +120,13 @@ public class MemberBean {
         }else if(user.getName().isEmpty() && user.getPassword().isEmpty()){
             setStatusAdd("Fyll i namn och losenord");
         }else{
-             userdb.addUser(this.user);
-             setStatusAdd("Anvandare registrerad");
+             boolean test=userdb.addUser(this.user);
+             if(test==true){
+                  setStatusAdd("Anvandare registrerad");
+             }
+             else if(test==false){
+                  setStatusAdd("Namnet finns redan");
+             }
         }
     }
     
@@ -165,9 +171,21 @@ public class MemberBean {
     
     public void logOut() throws IOException{
          this.reset();
-         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        
+         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml"); 
     }
+    
+    public void redirectToInbox() throws IOException{
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
+        response.sendRedirect("inbox.xhtml");
+    }
+    
+     public void redirectToProfile() throws IOException{
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
+        response.sendRedirect("besokarprofil.xhtml");
+    }
+    
     
     public void reset(){
         this.sender=new Member();
@@ -176,10 +194,12 @@ public class MemberBean {
     
     public void skicka(Member temp) {
         try {
-            FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("besokarprofil.xhtml");
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
+      
             receiver=temp;
-            users.clear();		 
+            users.clear();	
+            response.sendRedirect("besokarprofil.xhtml");
         } catch (IOException ex) {
             System.out.println("Error skickas: "+ex);
         }
