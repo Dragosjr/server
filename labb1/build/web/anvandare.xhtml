@@ -22,7 +22,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				</h:form>
 				<h:form>
 					<h:commandButton id="logOut" action="#{bean.logOut()}" value="Logga ut" />
-					<h:commandButton id="privateMessage" action="inbox" value="Privata meddalanden" />
+					<h:commandButton id="privateMessage" action="#{bean.redirectToInbox()}" value="Privata meddalanden" />
 				</h:form>
 			</h:panelGroup>
 		
