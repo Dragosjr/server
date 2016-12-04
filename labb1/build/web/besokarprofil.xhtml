@@ -30,6 +30,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				<h:form id="formSearch">
 					<h:inputText id="in" value="#{bean.searchname}"/>
                                         <h:commandButton id="knapp" value="Sok" action="#{bean.searchUser()}">
+                                              <f:ajax execute='in' render=":midRight :formSok"/>
 	  				</h:commandButton>
 				</h:form>
 			</h:panelGroup>
@@ -54,15 +55,18 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                                     <h:outputText value="#{bean.receiver.name}:"/>
                                     <h:inputTextarea id="inputaName" value="#{privatebean.message}"/>
                                     <br/>
-                                    <h:commandButton id="knappHej" value="Skicka" action="#{privatebean.add()}"/>
+                                    <h:commandButton id="knappHej" value="Skicka" action="#{privatebean.add()}">
+                                        <f:ajax execute='inputaName' render="@form"/>
+                                    </h:commandButton>
+                                    <h:outputLabel id ="outAdd" value="#{privatebean.statusVer}"/>
                                 </h:form>
-                                <h:outputLabel id ="outAdd" value="#{privatebean.statusVer}"/>
+                                
                           
 			</h:panelGroup>
 
 			
 			<h:panelGroup layout="block" id="midRight">
-                                 <h:form >
+                                 <h:form id="formSok">
                                  #{msgbean.list()}
                                 <h:dataTable  value="#{bean.users}" var="row">
                                     <h:column >
@@ -85,7 +89,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                                     <h:inputTextarea id="msgIn" styleClass="wallInput" value="#{msgbean.message}"/>
                                     <br/>
                                     <h:commandButton id="knappAddMsg" value="Post" action="#{msgbean.add()}"> 
-                                        <f:ajax execute='msgIn' render='@all'/>
+                                        <f:ajax execute='msgIn' render=":postWall :formWall"/>
                                     </h:commandButton>
                                     
                                     
@@ -94,7 +98,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                            
                                 <h:panelGroup layout="block" id="postWall">
                                      <h:form id="formwall">
-                                       
+                                         #{msgbean.list()}
                                          <h:dataTable id="outMsg" value="#{msgbean.publicmessages}" var="rad"> 
                                                 <h:column>
 

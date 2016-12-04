@@ -30,6 +30,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				<h:form id="formSearch">
 					<h:inputText id="in" value="#{bean.searchname}"/>
                                         <h:commandButton id="knapp" value="Sok" action="#{bean.searchUser()}">
+                                            <f:ajax execute='in' render=":midRight :formSok"/>
 	  				</h:commandButton>
 				</h:form>	
 			</h:panelGroup>
@@ -54,7 +55,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			
 			<h:panelGroup layout="block" id="midRight">
 			
-                            <h:form >
+                            <h:form id="formSok">
                                 #{msgbean.list()}
                                 <h:dataTable  value="#{bean.users}" var="row">
                                     <h:column >

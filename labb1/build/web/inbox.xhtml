@@ -19,7 +19,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				</h:commandLink>  
 			</h:form>
 			<h:form>
-				<h:commandButton id="logOut" action="login" value="Logga ut" />
+				<h:commandButton id="logOut" action="#{bean.logOut()}" value="Logga ut" />
 				<h:commandButton id="privateMessage" action="#{bean.redirectToInbox()}" value="Privata meddalanden" />
 			</h:form>
 		</h:panelGroup>
@@ -29,7 +29,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 			<h:form>
 				<h:inputText id="userLogin" value="#{bean.searchname}"/>
 				<h:commandButton id="search" value="Sok" action="#{bean.searchUser()}">
-					
+                                    <f:ajax execute='userLogin' render=":midRight :formSok"/>
   				</h:commandButton>
 			</h:form>	
 		</h:panelGroup>
@@ -44,7 +44,7 @@ org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		</h:panelGroup>
 		
 		<h:panelGroup layout="block" id="midRight">
-			<h:form id="hej">
+			<h:form id="formSok">
 			     #{privatebean.list()}
                                 <h:dataTable  value="#{bean.users}" var="row">
                                     <h:column >
